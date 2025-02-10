@@ -376,6 +376,7 @@ button {
 .MenubarRoot {
 	display: flex;
 	gap: 24px;
+	width: 100%;
 	background-color: var(--violet-11);
 	padding: 3px;
 	justify-content: center;

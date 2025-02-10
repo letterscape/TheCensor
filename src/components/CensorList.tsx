@@ -70,7 +70,7 @@ const CensorPage = ({data, status}: {data: CensorContent[], status: CensorStatus
   return (
     <Box p="4">
       <Flex direction="column" gap="2">
-        <Grid columns="2" gap="1" width="auto">
+        <Grid columns="2" gap="1" width="100%">
           {data.filter(filterData => {
             if (status === CensorStatusEnum.STAKING) {
               return filterData.status === GUARANTEE_STAKING || filterData.status === CHALLENGE_STAKING
