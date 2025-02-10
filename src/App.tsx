@@ -57,9 +57,7 @@ function App() {
         
       </Flex>
       { homePageRedirection == HomePageRedirectionEnum.List ?
-        <Box>
-          <CensorList/>
-        </Box>
+        <CensorList/>
         :
         homePageRedirection == HomePageRedirectionEnum.Setting ?
         <Container>
@@ -68,6 +66,7 @@ function App() {
         :
         null
       }
+      
       
     </>
   );

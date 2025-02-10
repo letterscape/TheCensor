@@ -45,7 +45,7 @@ const CensorList = () => {
     setCensorStatus(status);
   }
   return (
-    <Container>
+    <>
       <Menubar.Root className="MenubarRoot">
         <Menubar.Menu>
           {statusEnums.map((item, index) => (
@@ -61,7 +61,7 @@ const CensorList = () => {
         </Menubar.Menu>
       </Menubar.Root>
       <CensorPage data={censorContent} status={censorStatus}/>
-    </Container>
+    </>
   );
 }
 
