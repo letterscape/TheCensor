@@ -1,12 +1,18 @@
 import { ConnectButton } from "@mysten/dapp-kit";
-import { Box, Flex, Heading, Separator } from "@radix-ui/themes";
+import { Box, Button, Container, Flex, Heading, Separator } from "@radix-ui/themes";
+import CensorList from "./components/CensorList";
+import React from "react";
+import Setting from "./components/Setting";
 
-
+export enum HomePageRedirectionEnum {
+  List,
+  Setting
+}
 function App() {
-
+  const [homePageRedirection, setHomePageRedirection] = React.useState<HomePageRedirectionEnum>(HomePageRedirectionEnum.List);
   return (
     <>
-      <Flex
+      <Flex 
         position="sticky"
         px="4"
         py="2"
@@ -15,13 +21,31 @@ function App() {
           borderBottom: "1px solid var(--gray-a2)",
         }}
       >
-        <Box>
-          <Heading>TheCensor</Heading>
-        </Box>
+        <Flex justify='center' align='center'>
+          <Box>
+            <Button 
+              variant='ghost'
+              size="3"
+              onClick={() => {
+                setHomePageRedirection(HomePageRedirectionEnum.List);
+              }}
+            >
+              <Heading>TheCensor</Heading>
+            </Button>
+          </Box>
+        </Flex>
 
         <Flex justify='center' align='center' gap='4'>
           <Box>
+          <Button 
+            variant='ghost'
+            size="3"
+            onClick={() => {
+              setHomePageRedirection(HomePageRedirectionEnum.Setting);
+            }}
+          >
             Setting
+          </Button>
           </Box>
           <Separator orientation="vertical" size="2" />
           <Box>
@@ -30,6 +54,19 @@ function App() {
         </Flex>
         
       </Flex>
+      { homePageRedirection == HomePageRedirectionEnum.List ?
+        <Box>
+          <CensorList/>
+        </Box>
+        :
+        homePageRedirection == HomePageRedirectionEnum.Setting ?
+        <Container>
+          <Setting />
+        </Container>
+        :
+        null
+      }
+      
     </>
   );
 }
