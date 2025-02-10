@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Form } from 'radix-ui';
-import "../style.css";
-import { Box, Container, Flex, Heading } from "@radix-ui/themes";
+import "../styles.css";
+import { Container, Flex, Heading } from "@radix-ui/themes";
 
 
 const Setting = () => {
@@ -46,18 +46,18 @@ const Setting = () => {
         <Form.Root className="FormRoot" onSubmit={handleSubmit}>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="name">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Project Name</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   name="name"
@@ -68,13 +68,13 @@ const Setting = () => {
               </Form.Control>
             </Form.Field>
             <Form.Field className="FormField" name="website">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Project Website</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -82,7 +82,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid URL
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="url"
@@ -96,13 +96,13 @@ const Setting = () => {
           </Flex>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="guaranteeDeadline">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Guarantee Deadline(Hour)</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -110,7 +110,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -122,13 +122,13 @@ const Setting = () => {
               </Form.Control>
             </Form.Field>
             <Form.Field className="FormField" name="challengeDeadline">
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 alignItems: "baseline",
                 justifyContent: "space-between",
               }}
-            >
+            > */}
               <Form.Label className="FormLabel">Challenge Deadline(Hour)</Form.Label>
               <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                 Required
@@ -136,7 +136,7 @@ const Setting = () => {
               <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                 Invalid Number
               </Form.Message>
-            </div>
+            {/* </div> */}
             <Form.Control asChild>
               <input
                 type="number"
@@ -150,13 +150,13 @@ const Setting = () => {
           </Flex>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="guarantorNumber">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Guarantor Number</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -164,7 +164,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -176,13 +176,13 @@ const Setting = () => {
               </Form.Control>
             </Form.Field>
             <Form.Field className="FormField" name="challengerNumber">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Challenger Number</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -190,7 +190,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -204,13 +204,13 @@ const Setting = () => {
           </Flex>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="guaranteeStakingTotal">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Guarantee Staking Total</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -218,7 +218,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -230,13 +230,13 @@ const Setting = () => {
               </Form.Control>
             </Form.Field>
             <Form.Field className="FormField" name="challengeStakingTotal">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Challenge Staking Total</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -244,7 +244,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -258,13 +258,13 @@ const Setting = () => {
           </Flex>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="voteDeadline">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Vote Deadline(Hour)</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -272,7 +272,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -284,13 +284,13 @@ const Setting = () => {
               </Form.Control>
             </Form.Field>
             <Form.Field className="FormField" name="voteMinLimit">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Minimum vote Number</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -298,7 +298,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"
@@ -312,13 +312,13 @@ const Setting = () => {
           </Flex>
           <Flex gap='9' justify='center'>
             <Form.Field className="FormField" name="forfeitRate">
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "baseline",
                   justifyContent: "space-between",
                 }}
-              >
+              > */}
                 <Form.Label className="FormLabel">Forfeit Rate(%)</Form.Label>
                 <Form.Message className="FormMessage" match="valueMissing" style={{color: 'red'}}>
                   Required
@@ -326,7 +326,7 @@ const Setting = () => {
                 <Form.Message className="FormMessage" match="typeMismatch" style={{color: 'red'}}>
                   Invalid Number
                 </Form.Message>
-              </div>
+              {/* </div> */}
               <Form.Control asChild>
                 <input
                   type="number"

@@ -24,6 +24,7 @@ function App() {
         <Flex justify='center' align='center'>
           <Box>
             <Button 
+              style={{ cursor: "pointer" }}
               variant='ghost'
               size="3"
               onClick={() => {
@@ -38,6 +39,7 @@ function App() {
         <Flex justify='center' align='center' gap='4'>
           <Box>
           <Button 
+            style={{ cursor: "pointer" }}
             variant='ghost'
             size="3"
             onClick={() => {
