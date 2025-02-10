@@ -206,13 +206,13 @@ fieldset,
 }
 
 .DialogDescription {
-	margin: 10px 0 20px;
+	margin: 10px 0 10px;
 	color: var(--mauve-11);
 	font-size: 15px;
 	line-height: 1.5;
 }
 
-.Button {
+.DialogSubmit {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -231,22 +231,28 @@ fieldset,
 	outline: 2px solid var(--violet-6);
 	outline-offset: 1px;
 }
-.Button.violet {
+.DialogSubmit.violet {
 	background-color: var(--violet-4);
 	color: var(--violet-12);
 	outline-color: var(--violet-6);
 }
-.Button.violet:hover {
+.DialogSubmit.violet:hover {
 	background-color: var(--mauve-3);
 }
-.Button.green {
+.DialogSubmit.violet:disabled {
+	background-color: gray;
+	cursor: not-allowed;
+}
+.DialogSubmit.green {
 	background-color: var(--green-4);
 	color: var(--green-11);
 	outline-color: var(--green-7);
 }
-.Button.green:hover {
+.DialogSubmit.green:hover {
 	background-color: var(--green-5);
 }
+
+
 
 .IconButton {
 	all: unset;
@@ -349,6 +355,12 @@ button {
 	box-shadow: 0 0 0 2px black;
 }
 
+.RadioGroupItem:disabled,
+.RadioGroupItem[disabled] {
+	background-color: gray;
+	cursor: not-allowed;
+}
+
 .RadioGroupIndicator {
 	display: flex;
 	align-items: center;
@@ -402,5 +414,4 @@ button {
 .MenubarTrigger.active {
 	background-color: var(--violet-4);
 	color: var(--violet-11);
-}
-
+};
