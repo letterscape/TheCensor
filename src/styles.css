@@ -415,3 +415,29 @@ button {
 	background-color: var(--violet-4);
 	color: var(--violet-11);
 };
+
+.icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* 旋转动画 */
+.rotate {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 8px;
+}
