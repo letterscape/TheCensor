@@ -1,5 +1,5 @@
 import { Box, Button, Card, Flex, Grid, IconButton, Link, Text } from '@radix-ui/themes';
-import { contentData } from '../ContentData';
+import { contentData } from '../contentDatas';
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { HomePageRedirectionEnum } from '../App';
 
