@@ -47,7 +47,7 @@ const Contents = ({onReturn}: {onReturn: (status: HomePageRedirectionEnum) => vo
                         {item.date}
                       </Text>
                     </Flex>
-                    <Button color="blue" variant="soft" style={{ cursor: "pointer" }}>Register</Button>
+                    <Button color="mint" variant="soft" style={{ cursor: "pointer" }}>Register</Button>
                   </Flex>
                 </Flex>
               </Card>

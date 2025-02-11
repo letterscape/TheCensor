@@ -441,3 +441,20 @@ button {
   justify-content: start;
   padding: 8px;
 }
+
+.ellipsis-text {
+  display: inline-block;
+  max-width: 200px; /* 限制宽度 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 省略超出的部分 */
+  cursor: pointer;
+}
+
+.tooltip-content {
+  background-color: black;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}

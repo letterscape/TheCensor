@@ -1,10 +1,11 @@
-import { Badge, Box, Button, Card, Flex, Grid, Link, Progress, Text } from '@radix-ui/themes';
+import { Badge, Box, Button, Card, Flex, Grid, Link, Progress, Text, TextField } from '@radix-ui/themes';
 import { Dialog, Menubar, RadioGroup } from "radix-ui";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import "../styles.css";
 import React from 'react';
 import { useCurrentAccount } from '@mysten/dapp-kit';
 import ClaimPage from './ClaimPage';
+import History from './History';
 
 enum CensorStatusEnum {
   NONE,
@@ -26,13 +27,15 @@ const VOTING = 4;
 const CLOSED = 5;
 
 const censorContent: CensorContent[] = [
-  { id: '1', title: 'A Brief History of Memecoins: Their Past and Future', author: '1kx', url:'https://mirror.xyz/0x91e2E2D26076C8A1EaDb69273605c16ef01928ce/RgbEQvn1vgfzrE6GDTwk3rrNYQmyuwVgejtR0-6okRc', project: 'Mirror', homepage: 'https://mirror.xyz', status: 2, statusName: 'Guarantee Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isJoined: false },
-  { id: '2', title: 'Making Sense of DAOs: Frameworks to Make Your DAO Contribution Journey Easier', author: 'tally.xyz', url:'https://tally.mirror.xyz/E5Htgo-pee_6XA22zAqL6PxbwWm0NVLuwqy3ljUgts4', project: 'Mirror', homepage: 'https://mirror.xyz', status: 3, statusName: 'Challenge Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isJoined: false },
-  { id: '3', title: 'Why Your Friends and Family Won’t Talk About Bitcoin During the Holidays', author: 'Mark Helfman', url:'https://medium.com/thecapital/why-your-friends-and-family-wont-talk-about-bitcoin-during-the-holidays-c1ce7ebdbdf5', project: 'Medium', homepage: 'https://medium.com', status: 4, statusName: 'Voting', result: 0, voteRate: 20, rule: 'abcd', ruleMode: 3, isJoined: false },
-  { id: '4', title: 'Valuation for Ethereum Optimistic Rollups', author: 'fil', url:'https://mirror.xyz/filarm.eth/e5z62ePirMcG2_V3b_KmzWy580hdziAwCoTQME3YsnI', project: 'Mirror', homepage: 'https://mirror.xyz', status: 5, statusName: 'Closed', result: 1, voteRate: 60, rule: '', ruleMode: 0, isJoined: false },
-  { id: '5', title: '"the updates" ENE', author: 'Xcelencia', url:'https://xcelencia.mirror.xyz/r-OpUyTva99lwRCILVFfesMhwdQqu80754QtA2nVYpI', project: 'Mirror', homepage: 'https://mirror.xyz', status: 5, statusName: 'Closed', result: 0, voteRate: 35, rule: '', ruleMode: 0, isJoined: false },
-  { id: '6', title: 'I am a professional trader and I will teach you how to make money in one article (not clickbait)', author: 'Paul Lenosky', url:'https://medium.com/@paullenosky/i-am-a-professional-trader-and-i-will-teach-you-how-to-make-money-in-one-article-not-clickbait-e4f43ccbb85d', project: 'Medium', homepage: 'https://medium.com', status: 4, statusName: 'Voting', result: 0, voteRate: 70, rule: 'a', ruleMode: 3, isJoined: false },
-  { id: '7', title: 'The Many Rewards of Curiosity', author: 'rileybeans', url:'https://rileybeans.mirror.xyz/fHjegXov64dNA87wD8JdAjp6DoxtNYqMR9RywLX4QTo', project: 'Mirror', homepage: 'https://mirror.xyz', status: 5, statusName: 'Closed', result: 1, voteRate: 51, rule: '', ruleMode: 0, isJoined: false },
+  { id: '1', title: 'A Brief History of Memecoins: Their Past and Future', author: '1kx', url:'https://mirror.xyz/0x91e2E2D26076C8A1EaDb69273605c16ef01928ce/RgbEQvn1vgfzrE6GDTwk3rrNYQmyuwVgejtR0-6okRc', project: 'Mirror', homepage: 'https://mirror.xyz', status: 2, statusName: 'Guarantee Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
+  { id: '2', title: 'Governance Decides Where Ethereum Transacts: The L2 Governance Race', author: 'tally.xyz', url:'https://tally.mirror.xyz/QZNVKjupNZmSUsY9R2sV5_vA-qe1fsCMW2hlnZ-5lEg', project: 'Mirror', homepage: 'https://mirror.xyz', status: 2, statusName: 'Guarantee Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isGuaranteeStaked: true, isChallengeStaked: false, isVoted: false },
+  { id: '3', title: 'Making Sense of DAOs: Frameworks to Make Your DAO Contribution Journey Easier', author: 'tally.xyz', url:'https://tally.mirror.xyz/E5Htgo-pee_6XA22zAqL6PxbwWm0NVLuwqy3ljUgts4', project: 'Mirror', homepage: 'https://mirror.xyz', status: 3, statusName: 'Challenge Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
+  { id: '4', title: 'Ethnographic Insights on Point Systems', author: 'fil', url:'https://mirror.xyz/filarm.eth/xR1zm05c15iUCTjlaFfxezPPZLQnL8PLzNwwpizdRN4', project: 'Mirror', homepage: 'https://mirror.xyz', status: 3, statusName: 'Challenge Staking', result: 0, voteRate: 0, rule: '', ruleMode: 0, isGuaranteeStaked: false, isChallengeStaked: true, isVoted: false },
+  { id: '5', title: 'Why Your Friends and Family Won’t Talk About Bitcoin During the Holidays', author: 'Mark Helfman', url:'https://medium.com/thecapital/why-your-friends-and-family-wont-talk-about-bitcoin-during-the-holidays-c1ce7ebdbdf5', project: 'Medium', homepage: 'https://medium.com', status: 4, statusName: 'Voting', result: 0, voteRate: 20, rule: 'abcd', ruleMode: 3, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
+  { id: '6', title: 'Valuation for Ethereum Optimistic Rollups', author: 'fil', url:'https://mirror.xyz/filarm.eth/e5z62ePirMcG2_V3b_KmzWy580hdziAwCoTQME3YsnI', project: 'Mirror', homepage: 'https://mirror.xyz', status: 5, statusName: 'Closed', result: 1, voteRate: 60, rule: '', ruleMode: 0, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
+  { id: '7', title: '"the updates" ENE', author: 'Xcelencia', url:'https://xcelencia.mirror.xyz/r-OpUyTva99lwRCILVFfesMhwdQqu80754QtA2nVYpI', project: 'Mirror', homepage: 'https://mirror.xyz', status: 5, statusName: 'Closed', result: 0, voteRate: 35, rule: '', ruleMode: 0, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
+  { id: '8', title: 'I am a professional trader and I will teach you how to make money in one article (not clickbait)', author: 'Paul Lenosky', url:'https://medium.com/@paullenosky/i-am-a-professional-trader-and-i-will-teach-you-how-to-make-money-in-one-article-not-clickbait-e4f43ccbb85d', project: 'Medium', homepage: 'https://medium.com', status: 4, statusName: 'Voting', result: 0, voteRate: 70, rule: 'a', ruleMode: 3, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: true },
+  { id: '9', title: 'The Many Rewards of Curiosity', author: 'rileybeans', url:'https://rileybeans.mirror.xyz/fHjegXov64dNA87wD8JdAjp6DoxtNYqMR9RywLX4QTo', project: 'Mirror', homepage: 'https://mirror.xyz', status: 4, statusName: 'Voting', result: 0, voteRate: 51, rule: 'e', ruleMode: 3, isGuaranteeStaked: false, isChallengeStaked: false, isVoted: false },
 ];
 
 type CensorContent =  {
@@ -48,37 +51,58 @@ type CensorContent =  {
   voteRate: number,
   rule: string,
   ruleMode: number,
-  isJoined: boolean,
+  isGuaranteeStaked: boolean,
+  isChallengeStaked: boolean,
+  isVoted: boolean,
 }
 
 const CensorList = () => {
 
-  const menuItems = ["All", "Staking", "Voting", "Closed", "Claims"];
+  const menuItems = ["All", "Staking", "Voting", "Closed", "Search", "Claims", "History", "", ""];
   const statusEnums = [CensorStatusEnum.NONE, CensorStatusEnum.STAKING, CensorStatusEnum.VOTING, CensorStatusEnum.CLOSED];
   const [menuSelect, setMenuSelect] = React.useState<number>(0);
-  const handleMenuSelect = (index: number) => {
+  const [menuItemSelect, setMenuItemSelect] = React.useState<string>("");
+  const handleMenuSelect = (index: number, item: string) => {
     setMenuSelect(index);
+    setMenuItemSelect(item);
   }
   return (
     <>
       <Menubar.Root className="MenubarRoot">
         <Menubar.Menu>
           {menuItems.map((item, index) => (
-            <Menubar.Trigger
-              key={index}
-              onClick={() => handleMenuSelect(index)}
-              className={`MenubarTrigger ${menuSelect === index ? "active" : ""}`}
-              style={{ cursor: "pointer" }}
-            >
-              {item}
-            </Menubar.Trigger>
+            item === "Search" ?
+              <Menubar.Trigger
+                key={index}
+                style={{ cursor: "pointer", width: '35%'}}
+                asChild
+              >
+                <TextField.Root placeholder="Search ">
+                  <TextField.Slot>
+                    <MagnifyingGlassIcon height="16" width="16" />
+                  </TextField.Slot>
+                </TextField.Root>
+              </Menubar.Trigger>
+            :
+              <Menubar.Trigger
+                key={index}
+                onClick={() => handleMenuSelect(index, item)}
+                className={`MenubarTrigger ${menuSelect === index ? "active" : ""}`}
+                style={{ cursor: item.length === 0 ? "" : "pointer" }}
+                disabled={item.length === 0}
+              >
+                {item}
+              </Menubar.Trigger>
           ))}
         </Menubar.Menu>
       </Menubar.Root>
       {menuSelect < statusEnums.length ?
         <CensorPage data={censorContent} status={statusEnums[menuSelect]}/>
-      :
+      : menuItemSelect === "Claims" ?
         <ClaimPage />
+      : menuItemSelect === "History" ?
+        <History />
+      : null
       }
     </>
   );
@@ -194,11 +218,11 @@ const CensorDialog = ({content} : {content: CensorContent}) => {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {content.status === GUARANTEE_STAKING ?
-          <Button color="blue" variant="soft" disabled={content.isJoined} style={{ cursor: "pointer" }}>Stake</Button>
+          <Button color="blue" variant="soft" disabled={content.isGuaranteeStaked} style={{ cursor: "pointer" }}>Stake</Button>
         : content.status === CHALLENGE_STAKING ?
-          <Button color="red" variant="soft" disabled={content.isJoined} style={{ cursor: "pointer" }}>Stake</Button>
+          <Button color="red" variant="soft" disabled={content.isChallengeStaked} style={{ cursor: "pointer" }}>Stake</Button>
         : content.status === VOTING ?
-          <Button color="green" variant="soft" disabled={content.isJoined} style={{ cursor: "pointer" }}>Vote</Button>
+          <Button color="green" variant="soft" disabled={content.isVoted} style={{ cursor: "pointer" }}>Vote</Button>
         : null
         }
       </Dialog.Trigger>
